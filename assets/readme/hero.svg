@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400" role="img" aria-labelledby="t d">
+  <title id="t">HexPick</title>
+  <desc id="d">海克斯大乱斗风格的 macOS 抽卡工具：按 ⌘H 在任何桌面弹出三选一，内容由插件定义。右侧是白银、黄金、棱彩三张强化卡。</desc>
+  <defs>
+    <radialGradient id="glow" cx="78%" cy="45%" r="55%">
+      <stop offset="0" stop-color="#0A3246" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#010A13" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#57616D"/><stop offset="0.3" stop-color="#EEF3F8"/>
+      <stop offset="0.55" stop-color="#8794A3"/><stop offset="0.8" stop-color="#DFE6EE"/><stop offset="1" stop-color="#57616D"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6E420B"/><stop offset="0.28" stop-color="#FFE8A6"/>
+      <stop offset="0.55" stop-color="#B9822A"/><stop offset="0.8" stop-color="#FFD66F"/><stop offset="1" stop-color="#6E420B"/>
+    </linearGradient>
+    <linearGradient id="prism" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF8AD8"/><stop offset="0.3" stop-color="#A98BFF"/>
+      <stop offset="0.55" stop-color="#7FE0FF"/><stop offset="0.78" stop-color="#A6FFB0"/><stop offset="1" stop-color="#FFE580"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#10232E"/><stop offset="0.7" stop-color="#050B10"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" rx="24" fill="#010A13"/>
+  <rect width="1200" height="400" rx="24" fill="url(#glow)"/>
+  <rect x="12" y="12" width="1176" height="376" rx="16" fill="none" stroke="#C8AA6E" stroke-opacity="0.22"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+    <text x="64" y="88" font-size="20" letter-spacing="3" fill="#C8AA6E">ARAM MAYHEM · 海克斯大乱斗风格</text>
+    <text x="60" y="176" font-size="92" font-weight="700" fill="#F0E6D2" font-family="Optima, Didot, Georgia, serif" letter-spacing="1">HexPick</text>
+    <text x="64" y="234" font-size="34" font-weight="600" fill="#F0E6D2">按 ⌘H，在任何桌面弹出三选一</text>
+    <text x="64" y="276" font-size="22" fill="#8593A3">点名、吃什么、做决定。插件里写什么，就抽什么。</text>
+    <rect x="64" y="312" width="170" height="40" rx="20" fill="none" stroke="#C8AA6E" stroke-opacity="0.55"/><text x="149.0" y="338" text-anchor="middle" font-size="18" fill="#CDD6E0">macOS 菜单栏应用</text><rect x="252" y="312" width="180" height="40" rx="20" fill="none" stroke="#C8AA6E" stroke-opacity="0.55"/><text x="342.0" y="338" text-anchor="middle" font-size="18" fill="#CDD6E0">白银 · 黄金 · 棱彩</text><rect x="450" y="312" width="124" height="40" rx="20" fill="none" stroke="#C8AA6E" stroke-opacity="0.55"/><text x="512.0" y="338" text-anchor="middle" font-size="18" fill="#CDD6E0">JSON 插件</text>
+  </g>
+  
+  <g transform="translate(806 208) rotate(-9)">
+    <path d="M-47.0,-103.0 H59.0 L75.0,-87.0 V107.0 L59.0,123.0 H-47.0 L-63.0,107.0 V-87.0 Z" fill="#000" opacity="0.45"/>
+    <path d="M-53.0,-113.0 H53.0 L69.0,-97.0 V97.0 L53.0,113.0 H-53.0 L-69.0,97.0 V-97.0 Z" fill="url(#silver)"/>
+    <path d="M-50.0,-106.0 H50.0 L62.0,-94.0 V94.0 L50.0,106.0 H-50.0 L-62.0,94.0 V-94.0 Z" fill="url(#panel)"/>
+    <path d="M-50.0,-106.0 H50.0 L62.0,-94.0 V94.0 L50.0,106.0 H-50.0 L-62.0,94.0 V-94.0 Z" fill="none" stroke="#C9D4DF" stroke-opacity="0.25"/>
+    <circle cx="0" cy="-48" r="36" fill="#0B1A24" stroke="#C9D4DF" stroke-opacity="0.6" stroke-width="2"/>
+    <text x="0" y="-36" text-anchor="middle" font-size="34" font-weight="700" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" fill="#F0E6D2">王</text>
+    <text x="0" y="18" text-anchor="middle" font-size="22" font-weight="600" fill="#F0E6D2" font-family="Optima, Songti SC, STSong, Georgia, serif">点名</text>
+    <path d="M-40 34 H40" stroke="#C9D4DF" stroke-opacity="0.55"/>
+    <path d="M0 29 L5 34 L0 39 L-5 34 Z" fill="#C9D4DF"/>
+    <text x="0" y="92" text-anchor="middle" font-size="18" letter-spacing="5" fill="#C9D4DF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">白银</text>
+  </g>
+  <g transform="translate(1074 208) rotate(9)">
+    <path d="M-47.0,-103.0 H59.0 L75.0,-87.0 V107.0 L59.0,123.0 H-47.0 L-63.0,107.0 V-87.0 Z" fill="#000" opacity="0.45"/>
+    <path d="M-53.0,-113.0 H53.0 L69.0,-97.0 V97.0 L53.0,113.0 H-53.0 L-69.0,97.0 V-97.0 Z" fill="url(#prism)"/>
+    <path d="M-50.0,-106.0 H50.0 L62.0,-94.0 V94.0 L50.0,106.0 H-50.0 L-62.0,94.0 V-94.0 Z" fill="url(#panel)"/>
+    <path d="M-50.0,-106.0 H50.0 L62.0,-94.0 V94.0 L50.0,106.0 H-50.0 L-62.0,94.0 V-94.0 Z" fill="none" stroke="#C69BFF" stroke-opacity="0.25"/>
+    <circle cx="0" cy="-48" r="36" fill="#0B1A24" stroke="#C69BFF" stroke-opacity="0.6" stroke-width="2"/>
+    <text x="0" y="-36" text-anchor="middle" font-size="38" font-family="Apple Color Emoji, Segoe UI Emoji, sans-serif">🍲</text>
+    <text x="0" y="18" text-anchor="middle" font-size="22" font-weight="600" fill="#F0E6D2" font-family="Optima, Songti SC, STSong, Georgia, serif">火锅</text>
+    <path d="M-40 34 H40" stroke="#C69BFF" stroke-opacity="0.55"/>
+    <path d="M0 29 L5 34 L0 39 L-5 34 Z" fill="#C69BFF"/>
+    <text x="0" y="92" text-anchor="middle" font-size="18" letter-spacing="5" fill="#C69BFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">棱彩</text>
+  </g>
+  <g transform="translate(940 192) rotate(0)">
+    <path d="M-47.0,-103.0 H59.0 L75.0,-87.0 V107.0 L59.0,123.0 H-47.0 L-63.0,107.0 V-87.0 Z" fill="#000" opacity="0.45"/>
+    <path d="M-53.0,-113.0 H53.0 L69.0,-97.0 V97.0 L53.0,113.0 H-53.0 L-69.0,97.0 V-97.0 Z" fill="url(#gold)"/>
+    <path d="M-50.0,-106.0 H50.0 L62.0,-94.0 V94.0 L50.0,106.0 H-50.0 L-62.0,94.0 V-94.0 Z" fill="url(#panel)"/>
+    <path d="M-50.0,-106.0 H50.0 L62.0,-94.0 V94.0 L50.0,106.0 H-50.0 L-62.0,94.0 V-94.0 Z" fill="none" stroke="#F2C45A" stroke-opacity="0.25"/>
+    <circle cx="0" cy="-48" r="36" fill="#0B1A24" stroke="#F2C45A" stroke-opacity="0.6" stroke-width="2"/>
+    <text x="0" y="-36" text-anchor="middle" font-size="28" font-weight="700" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" fill="#F0E6D2">⌘H</text>
+    <text x="0" y="18" text-anchor="middle" font-size="22" font-weight="600" fill="#F0E6D2" font-family="Optima, Songti SC, STSong, Georgia, serif">随时呼出</text>
+    <path d="M-40 34 H40" stroke="#F2C45A" stroke-opacity="0.55"/>
+    <path d="M0 29 L5 34 L0 39 L-5 34 Z" fill="#F2C45A"/>
+    <text x="0" y="92" text-anchor="middle" font-size="18" letter-spacing="5" fill="#F2C45A" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">黄金</text>
+  </g>
+</svg>
