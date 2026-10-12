@@ -1,0 +1,335 @@
+/* 设置窗口：跟随 macOS 浅色/深色外观，配合窗口毛玻璃 */
+:root {
+  --bg: transparent;
+  --card: rgb(255 255 255 / 0.72);
+  --line: rgb(0 0 0 / 0.08);
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --accent: #b8862f;
+  --accent-text: #fff;
+  --danger: #c4314b;
+  --warn: #9a6200;
+  --switch-off: rgb(0 0 0 / 0.14);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card: rgb(40 40 44 / 0.7);
+    --line: rgb(255 255 255 / 0.08);
+    --text: #f5f5f7;
+    --muted: #98989d;
+    --accent: #c8aa6e;
+    --accent-text: #1a1206;
+    --danger: #ff6b81;
+    --warn: #ffc864;
+    --switch-off: rgb(255 255 255 / 0.18);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.5 -apple-system, 'PingFang SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 44px 24px 28px;
+}
+
+.titlebar {
+  -webkit-app-region: drag;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.titlebar h1 {
+  margin: 0;
+  font: 700 22px/1.2 'Optima', 'Songti SC', serif;
+  letter-spacing: 0.04em;
+}
+
+.titlebar p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  margin: 0 0 8px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.card {
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow: 0 0 0 0.5px var(--line), 0 1px 2px rgb(0 0 0 / 0.04);
+  padding: 4px 14px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  padding: 8px 0;
+  border-bottom: 0.5px solid var(--line);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row__label {
+  display: grid;
+}
+
+.hint {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.hint.is-error {
+  color: var(--danger);
+}
+
+.hint.is-warn {
+  color: var(--warn);
+  max-width: 280px;
+}
+
+/* 快捷键录制框 */
+.hotkey {
+  display: grid;
+  justify-items: end;
+  text-align: right;
+}
+
+.hotkey__field {
+  min-width: 150px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--card);
+  font: 600 15px/1.2 -apple-system, sans-serif;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: border-color 160ms, box-shadow 160ms;
+}
+
+.hotkey__field:hover {
+  border-color: var(--accent);
+}
+
+.hotkey__field.is-recording {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 30%, transparent);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+/* 开关 */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  flex: none;
+}
+
+.switch input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.switch span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--switch-off);
+  pointer-events: none;
+  transition: background 160ms;
+}
+
+.switch span::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.switch input:checked + span {
+  background: var(--accent);
+}
+
+.switch input:checked + span::after {
+  transform: translateX(16px);
+}
+
+.switch input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+input[type='range'] {
+  width: 180px;
+  accent-color: var(--accent);
+}
+
+/* 插件列表 */
+.plugins {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plugin {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--line);
+}
+
+.plugin.is-off .plugin__main,
+.plugin.is-off .plugin__icon {
+  opacity: 0.45;
+}
+
+.plugin.is-empty {
+  color: var(--muted);
+}
+
+.plugin__icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 18px;
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+}
+
+.plugin__main {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+
+.plugin__name {
+  font-weight: 600;
+}
+
+.plugin__meta {
+  color: var(--muted);
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link {
+  border: 0;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 5px;
+}
+
+.link:hover {
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+}
+
+.errors {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  list-style: none;
+  border-radius: 8px;
+  color: var(--danger);
+  background: color-mix(in oklab, var(--danger) 10%, transparent);
+  font-size: 12px;
+}
+
+.errors li + li {
+  margin-top: 4px;
+}
+
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0 4px;
+}
+
+.btn {
+  padding: 5px 12px;
+  border: 0.5px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: 0 0.5px 1px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+}
+
+.btn:hover {
+  border-color: var(--accent);
+}
+
+.btn:active {
+  transform: translateY(0.5px);
+}
+
+.btn--primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.btn:focus-visible,
+.link:focus-visible,
+.hotkey__field:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.footnote {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}

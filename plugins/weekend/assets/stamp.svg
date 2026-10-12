@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="44" fill="none" stroke="#d9480f" stroke-width="4"/>
+  <circle cx="50" cy="50" r="36" fill="none" stroke="#d9480f" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="50" y="47" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="#d9480f">WEEKEND</text>
+  <text x="50" y="66" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#d9480f">HEXPICK</text>
+</svg>

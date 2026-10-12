@@ -1,0 +1,339 @@
+.hx-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  justify-items: center;
+  padding: clamp(20px, 4vh, 48px) clamp(16px, 4vw, 64px) clamp(16px, 3vh, 32px);
+  color: var(--hx-text);
+  font-family: var(--hx-font-body);
+  animation: hx-fade-in 240ms var(--ease-out-expo);
+}
+
+.hx-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hx-dim), var(--hx-bg-image, none) center 62% / cover no-repeat;
+}
+
+/* 不用背景图时，透出并模糊桌面 */
+.hx-backdrop.is-bare {
+  backdrop-filter: blur(10px) saturate(1.1);
+}
+
+.hx-topbar {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.hx-close,
+.hx-warn {
+  border: 1px solid rgb(200 170 110 / 0.35);
+  background: rgb(1 10 19 / 0.6);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+}
+
+.hx-close {
+  width: 36px;
+  height: 36px;
+  color: var(--hx-gold);
+}
+
+.hx-warn {
+  padding: 6px 14px;
+  font-size: 13px;
+  color: #ffd27a;
+}
+
+.hx-close:hover,
+.hx-warn:hover {
+  border-color: var(--hx-gold);
+  color: var(--hx-ink);
+}
+
+.hx-close:active {
+  transform: scale(0.92);
+}
+
+/* 插件切换 */
+.hx-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: clamp(10px, 2.4vh, 26px);
+}
+
+.hx-tab {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.04);
+  color: var(--hx-muted);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+}
+
+.hx-tab:hover {
+  color: var(--hx-ink);
+  background: rgb(255 255 255 / 0.08);
+}
+
+.hx-tab.is-active {
+  color: var(--hx-ink);
+  border-color: rgb(200 170 110 / 0.55);
+  background: linear-gradient(180deg, rgb(200 170 110 / 0.18), rgb(200 170 110 / 0.04));
+}
+
+/* 标题区 */
+.hx-header {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.hx-eyebrow {
+  margin: 0;
+  color: var(--hx-gold);
+  font-size: 13px;
+  letter-spacing: 0.28em;
+}
+
+.hx-heading {
+  position: relative;
+  margin: 0;
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  font-family: var(--hx-font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 46px);
+  letter-spacing: 0.08em;
+  color: var(--hx-ink);
+  text-shadow: 0 2px 24px rgb(0 0 0 / 0.6);
+}
+
+.hx-heading__tier {
+  font-size: 0.5em;
+  letter-spacing: 0.24em;
+  color: var(--glow-silver);
+}
+
+.tier-gold .hx-heading__tier {
+  color: var(--glow-gold);
+}
+
+.tier-prismatic .hx-heading__tier {
+  color: var(--glow-prismatic);
+}
+
+.hx-step {
+  margin: 0;
+  color: var(--hx-muted);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+}
+
+.hx-pips {
+  display: flex;
+  gap: 6px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 斗魂竞技场的“强化选择”阶段图标 */
+.hx-pip img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  transition: transform var(--dur) var(--ease-back);
+}
+
+.hx-pip.is-current img {
+  transform: scale(1.25);
+}
+
+/* 卡片区 */
+.hx-stage {
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: clamp(12px, 3vh, 36px) 0;
+}
+
+.hx-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(16px, 2.4vw, 40px);
+  perspective: 1400px;
+}
+
+.hx-row[data-count='4'],
+.hx-row[data-count='5'] {
+  --card-w: clamp(176px, 14vw, 236px);
+}
+
+.hx-empty {
+  text-align: center;
+  color: var(--hx-text);
+  font-size: 16px;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+/* 底部 */
+.hx-footer {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  min-height: 96px;
+}
+
+.hx-actions {
+  display: flex;
+  gap: 12px;
+  min-height: 46px;
+}
+
+.hx-btn {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 26px;
+  border: 1px solid rgb(200 170 110 / 0.5);
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgb(30 35 40 / 0.9), rgb(1 10 19 / 0.9));
+  color: var(--hx-ink);
+  font-family: var(--hx-font-display);
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast);
+}
+
+.hx-btn:hover {
+  border-color: var(--hx-gold);
+  box-shadow: 0 0 18px rgb(200 170 110 / 0.35), inset 0 0 12px rgb(200 170 110 / 0.15);
+}
+
+.hx-btn:active {
+  transform: translateY(1px);
+}
+
+.hx-btn:focus-visible,
+.hx-tab:focus-visible,
+.hx-close:focus-visible,
+.hx-reroll:focus-visible {
+  outline: 2px solid var(--hx-accent);
+  outline-offset: 3px;
+}
+
+.hx-btn--primary {
+  border-color: var(--hx-gold);
+  background: linear-gradient(180deg, #1e2328, #0a1015);
+  animation: hx-rise 420ms var(--ease-out-expo) both;
+}
+
+.hx-btn kbd {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgb(200 170 110 / 0.18);
+  color: var(--hx-gold);
+}
+
+.hx-hints {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  color: var(--hx-muted);
+  font-size: 12px;
+}
+
+.hx-hint {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.hx-hint kbd {
+  min-width: 22px;
+  padding: 2px 6px;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  text-align: center;
+  color: var(--hx-text);
+}
+
+/* 倒计时 */
+.hx-timer {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-family: var(--hx-font-display);
+  font-size: 18px;
+  color: var(--hx-ink);
+}
+
+.hx-timer svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.hx-timer circle {
+  fill: none;
+  stroke-width: 3;
+}
+
+.hx-timer__track {
+  stroke: rgb(255 255 255 / 0.1);
+}
+
+.hx-timer__bar {
+  stroke: var(--hx-gold);
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--progress));
+  transition: stroke-dashoffset 1s linear;
+}
+
+.hx-timer.is-urgent {
+  color: #ff6b6b;
+}
+
+.hx-timer.is-urgent .hx-timer__bar {
+  stroke: #ff6b6b;
+}
+
+@keyframes hx-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes hx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}

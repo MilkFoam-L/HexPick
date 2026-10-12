@@ -1,0 +1,24 @@
+{
+  "id": "weekend",
+  "name": "周末去哪儿",
+  "icon": "🎟️",
+  "description": "自定义模板示例：card.html 决定排版，style.css 决定样式，theme 改了配色和品质名称。",
+  "template": "card.html",
+  "style": "style.css",
+  "theme": {
+    "labels": { "silver": "随便", "gold": "心动", "prismatic": "必去" },
+    "colors": { "gold": "#ff9f5a", "accent": "#ffb36b" }
+  },
+  "rules": { "screens": 1, "drawCount": 3, "rerollsPerCard": 2 },
+  "items": [
+    { "title": "看海", "icon": "🌊", "rarity": "prismatic", "description": "带上相机，<gold>日落</gold>前到。", "data": { "where": "海边栈道", "budget": 200, "time": "全天" } },
+    { "title": "露营", "icon": "⛺", "rarity": "prismatic", "description": "篝火 + 星空，<keyword>手机信号弱</keyword>。", "data": { "where": "郊野公园", "budget": 400, "time": "两天一夜" } },
+    { "title": "看展", "icon": "🖼️", "rarity": "gold", "description": "最近新开的 <keyword>当代艺术展</keyword>。", "data": { "where": "美术馆", "budget": 120, "time": "半天" } },
+    { "title": "爬山", "icon": "⛰️", "rarity": "gold", "description": "山顶有 <gold>一碗热面</gold>。", "data": { "where": "城郊山", "budget": 50, "time": "半天" } },
+    { "title": "密室逃脱", "icon": "🔐", "rarity": "gold", "description": "4 人起，<keyword>胆小慎选</keyword>。", "data": { "where": "商场 5 楼", "budget": 160, "time": "2 小时" } },
+    { "title": "在家躺平", "icon": "🛋️", "description": "<heal>满血回复</heal>，零花费。", "data": { "where": "沙发", "budget": 0, "time": "随意" } },
+    { "title": "逛菜市场", "icon": "🥬", "description": "感受 <gold>烟火气</gold>，顺便买菜。", "data": { "where": "早市", "budget": 80, "time": "早上" } },
+    { "title": "骑车兜风", "icon": "🚲", "description": "沿河骑 20 公里。", "data": { "where": "滨河绿道", "budget": 20, "time": "傍晚" } },
+    { "title": "看电影", "icon": "🎬", "description": "挑一部 <keyword>评分 8 分以上</keyword> 的。", "data": { "where": "电影院", "budget": 90, "time": "3 小时" } }
+  ]
+}

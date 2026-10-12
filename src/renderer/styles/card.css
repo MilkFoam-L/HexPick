@@ -1,0 +1,714 @@
+/*
+ * 卡片 = 海克斯大乱斗原版贴图逐层叠加，CSS 只负责定位和动画。
+ * 512×512 贴图里卡片占 x∈[100,412]、y∈[0,512]，所以贴图层左右各外扩 100/312 = 32.05%。
+ */
+.hx-card--silver {
+  --glow: var(--glow-silver);
+}
+
+.hx-card--gold {
+  --glow: var(--glow-gold);
+}
+
+.hx-card--prismatic {
+  --glow: var(--glow-prismatic);
+}
+
+.hx-slot {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+
+.hx-card {
+  position: relative;
+  display: block;
+  width: var(--card-w);
+  height: var(--card-h);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  text-align: center;
+  isolation: isolate;
+  animation: hx-deal 640ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--i) * 110ms);
+  transition: transform var(--dur) var(--ease-out-expo), opacity var(--dur);
+}
+
+.hx-card:focus-visible {
+  outline: none;
+}
+
+.hx-card:hover:not(:disabled):not(.is-static),
+.hx-card:focus-visible {
+  transform: translateY(-8px) scale(1.04);
+}
+
+/* ===== 贴图层 ===== */
+.hx-tex {
+  position: absolute;
+  pointer-events: none;
+  background: center / 100% 100% no-repeat;
+}
+
+.hx-tex--bg,
+.hx-tex--frame,
+.hx-tex--holo,
+.hx-tex--notpicked {
+  top: 0;
+  bottom: 0;
+  left: -32.05%;
+  right: -32.05%;
+}
+
+.hx-tex--bg {
+  background-image: url('/game/card/bg.png');
+}
+
+.hx-card--silver .hx-tex--frame {
+  background-image: url('/game/card/frame_silver.png');
+}
+
+.hx-card--gold .hx-tex--frame {
+  background-image: url('/game/card/frame_gold.png');
+}
+
+.hx-card--prismatic .hx-tex--frame {
+  background-image: url('/game/card/frame_prismatic.png');
+}
+
+/* 棱彩卡底的全息纹理 */
+.hx-tex--holo {
+  background-image: url('/game/card/holo.png');
+  mix-blend-mode: screen;
+  opacity: 0.14;
+  animation: hx-holo 4s ease-in-out infinite;
+}
+
+/* 悬停光泽：1024 贴图，卡片占中间 312×512 */
+.hx-tex--sheen {
+  top: -50%;
+  bottom: -50%;
+  left: -114.1%;
+  right: -114.1%;
+  opacity: 0;
+  transition: opacity var(--dur);
+}
+
+.hx-card--silver .hx-tex--sheen {
+  background-image: url('/game/card/sheen_silver.png');
+}
+
+.hx-card--gold .hx-tex--sheen {
+  background-image: url('/game/card/sheen_gold.png');
+}
+
+.hx-card--prismatic .hx-tex--sheen {
+  background-image: url('/game/card/sheen_prismatic.png');
+}
+
+.hx-card--prismatic:not(.is-dimmed) .hx-tex--sheen {
+  opacity: 0.45;
+}
+
+.hx-card:hover:not(:disabled):not(.is-static) .hx-tex--sheen,
+.hx-card:focus-visible .hx-tex--sheen {
+  opacity: 1;
+}
+
+/* 投影：128 贴图，卡形区域 x∈[37,98]、y∈[20,113] */
+.hx-tex--shadow {
+  top: -21.5%;
+  bottom: -16.1%;
+  left: -54.9%;
+  right: -54.9%;
+  z-index: -1;
+  background-image: url('/game/card/shadow.png');
+  opacity: 0.85;
+  transform: translateY(4%);
+}
+
+/* 未选中：原版暗化卡面 */
+.hx-tex--notpicked {
+  background-image: url('/game/card/notpicked.png');
+  opacity: 0;
+  transition: opacity var(--dur);
+}
+
+/* 金色刷新：原版扫光在卡面内循环 */
+.hx-tex--swipe {
+  inset: 0;
+  overflow: hidden;
+  border-radius: 4%;
+}
+
+.hx-tex--swipe::before {
+  content: '';
+  position: absolute;
+  left: -148.4%;
+  right: -148.4%;
+  top: -32.2%;
+  height: 241.8%;
+  background: url('/game/card/goldswipe.png') center / 100% 100% no-repeat;
+  mix-blend-mode: screen;
+  animation: hx-swipe 2.4s ease-in-out infinite;
+}
+
+/* 图标底座：按品质的原版底纹 */
+.hx-tex--iconback {
+  inset: 0;
+}
+
+.hx-card--silver .hx-tex--iconback {
+  background-image: url('/game/card/iconback_silver.png');
+}
+
+.hx-card--gold .hx-tex--iconback {
+  background-image: url('/game/card/iconback_gold.png');
+}
+
+.hx-card--prismatic .hx-tex--iconback {
+  background-image: url('/game/card/iconback_prismatic.png');
+}
+
+/* ===== 选中 / 未选中 ===== */
+.hx-card.is-picked {
+  transform: translateY(-16px) scale(1.06);
+  cursor: default;
+}
+
+.hx-card.is-picked .hx-tex--sheen {
+  opacity: 1;
+  animation: hx-pick-glow 1.8s ease-in-out infinite;
+}
+
+.hx-card.is-dimmed {
+  cursor: default;
+}
+
+.hx-card.is-dimmed .hx-tex--notpicked {
+  opacity: 1;
+}
+
+.hx-card.is-dimmed .hx-card__content {
+  opacity: 0.35;
+}
+
+/* ===== 刷新按钮 ===== */
+.hx-reroll {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px 0 10px;
+  border: 1px solid rgb(200 170 110 / 0.5);
+  border-radius: 999px;
+  background: rgb(1 10 19 / 0.8);
+  color: var(--hx-gold);
+  font: 600 14px/1 var(--hx-font-body);
+  cursor: pointer;
+  transition: border-color var(--dur-fast), color var(--dur-fast), opacity var(--dur-fast), transform var(--dur-fast);
+}
+
+.hx-reroll img {
+  transition: transform 420ms var(--ease-out-expo);
+}
+
+.hx-reroll:hover:not(:disabled) {
+  border-color: var(--hx-gold);
+  color: var(--hx-ink);
+}
+
+.hx-reroll:hover:not(:disabled) img {
+  transform: rotate(180deg);
+}
+
+.hx-reroll:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.hx-reroll:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.hx-reroll.is-golden {
+  border-color: #f2c45a;
+  color: #ffe7a6;
+  box-shadow: 0 0 14px rgb(242 196 90 / 0.55), inset 0 0 10px rgb(242 196 90 / 0.3);
+}
+
+/* ===== 卡面内容（在卡底与边框之间） ===== */
+.hx-card__content {
+  position: absolute;
+  inset: 6% 7% 4.5%;
+}
+
+.hx-aug,
+.hx-portrait,
+.hx-text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hx-aug__medal,
+.hx-portrait__avatar {
+  position: relative;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.hx-aug__medal {
+  width: 62%;
+  margin: 2% 0 6%;
+}
+
+.hx-aug__medal > :not(.hx-tex) {
+  position: relative;
+  grid-area: 1 / 1;
+}
+
+.hx-glyph-img {
+  width: 74%;
+  height: 74%;
+  object-fit: contain;
+}
+
+.hx-glyph-text {
+  font-size: calc(var(--card-w) * 0.2);
+  line-height: 1;
+}
+
+.hx-aug__title {
+  font-family: var(--hx-font-display);
+  font-weight: 700;
+  font-size: calc(var(--card-w) * 0.08);
+  letter-spacing: 0.04em;
+  color: var(--hx-ink);
+}
+
+.hx-rule {
+  width: 60%;
+  height: 1px;
+  margin: 9px 0;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--glow) 70%, transparent), transparent);
+}
+
+.hx-aug__desc,
+.hx-portrait__desc {
+  flex: 1;
+  overflow: hidden;
+  padding: 0 2%;
+  font-size: calc(var(--card-w) * 0.052);
+  line-height: 1.6;
+  color: var(--hx-text);
+}
+
+.hx-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin: 6px 0;
+}
+
+.hx-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  color: color-mix(in oklab, var(--glow) 50%, white);
+  background: color-mix(in oklab, var(--glow) 15%, transparent);
+}
+
+.hx-tier {
+  margin-top: auto;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--glow);
+}
+
+/* 描述标签配色（模仿游戏描述） */
+.hx-gold {
+  color: #f0c75e;
+  font-weight: 600;
+}
+
+.hx-keyword {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline dotted rgb(255 255 255 / 0.4);
+  text-underline-offset: 3px;
+}
+
+.hx-ap {
+  color: #b48cff;
+}
+
+.hx-ad {
+  color: #ff9a4a;
+}
+
+.hx-heal {
+  color: #63d98a;
+}
+
+.hx-shield {
+  color: #b9dcff;
+}
+
+.hx-true {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== portrait（点人）：头像放在原版图标底座里 ===== */
+.hx-portrait__avatar {
+  width: 70%;
+  margin: 4% 0 6%;
+}
+
+.hx-portrait__avatar > img,
+.hx-portrait__initial {
+  position: relative;
+  grid-area: 1 / 1;
+  width: 66%;
+  height: 66%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hx-portrait__initial {
+  display: grid;
+  place-items: center;
+  font-family: var(--hx-font-display);
+  font-weight: 700;
+  font-size: calc(var(--card-w) * 0.19);
+  color: white;
+  background: radial-gradient(circle at 35% 30%, hsl(var(--avatar-hue) 55% 50%), hsl(var(--avatar-hue) 50% 22%));
+  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.15);
+}
+
+.hx-portrait__name {
+  font-family: var(--hx-font-display);
+  font-weight: 700;
+  font-size: calc(var(--card-w) * 0.115);
+  letter-spacing: 0.08em;
+  color: var(--hx-ink);
+}
+
+/* ===== text（投屏大字） ===== */
+.hx-text {
+  justify-content: center;
+  gap: 14px;
+}
+
+.hx-text__icon {
+  font-size: calc(var(--card-w) * 0.2);
+}
+
+.hx-text__title {
+  font-family: var(--hx-font-display);
+  font-weight: 700;
+  font-size: calc(var(--card-w) * 0.16);
+  line-height: 1.15;
+  color: var(--hx-ink);
+  overflow-wrap: anywhere;
+}
+
+.hx-text__desc {
+  font-size: calc(var(--card-w) * 0.056);
+  line-height: 1.6;
+}
+
+.hx-text .hx-tier {
+  margin-top: 8px;
+}
+
+/* ===== 自定义模板宿主 ===== */
+.hx-custom {
+  display: block;
+  height: 100%;
+}
+
+/* ===== 局末总结：缩小的原版卡面 ===== */
+.hx-summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hx-summary .hx-card {
+  --card-w: clamp(150px, 11vw, 190px);
+  --card-h: calc(var(--card-w) * 1.641);
+  cursor: default;
+}
+
+.hx-summary .hx-aug__desc {
+  font-size: calc(var(--card-w) * 0.06);
+}
+
+@keyframes hx-deal {
+  from {
+    opacity: 0;
+    transform: translateY(46px) scale(0.92);
+  }
+}
+
+@keyframes hx-holo {
+  50% {
+    opacity: 0.26;
+  }
+}
+
+@keyframes hx-swipe {
+  0% {
+    transform: translateY(-70%);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70%,
+  100% {
+    transform: translateY(40%);
+    opacity: 0;
+  }
+}
+
+@keyframes hx-pick-glow {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ======================================================================
+ * 选择界面特效（全部使用游戏特效贴图）
+ * ==================================================================== */
+.hx-card__clip {
+  position: absolute;
+  inset: 1.5% 2.5%;
+  overflow: hidden;
+  border-radius: 5%;
+  pointer-events: none;
+}
+
+.hx-fx {
+  position: absolute;
+  pointer-events: none;
+  background: center / 100% 100% no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+/*
+ * 出现时的中心闪光。原版贴图是黑底（游戏里用加色混合），
+ * 直接贴会露出黑色方块，所以把它当亮度遮罩：黑色透明，亮处透出品质光色。
+ */
+.hx-fx--flare {
+  left: -60%;
+  right: -60%;
+  top: 50%;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  background: color-mix(in oklab, var(--glow) 55%, white);
+  -webkit-mask: url('/game/fx/flare.png') center / 100% 100% no-repeat luminance;
+  mask: url('/game/fx/flare.png') center / 100% 100% no-repeat luminance;
+  mix-blend-mode: plus-lighter;
+  animation: hx-flare 700ms ease-out both;
+  animation-delay: calc(var(--i) * 110ms + 120ms);
+}
+
+/* 悬停：斜向光带扫过卡面 */
+.hx-fx--sweep {
+  inset: -10% -60%;
+  background-image: url('/game/fx/hover_mask.png');
+  translate: -100% -40%;
+}
+
+.hx-card:hover:not(:disabled):not(.is-static) .hx-fx--sweep,
+.hx-card:focus-visible .hx-fx--sweep {
+  animation: hx-sweep 700ms var(--ease-out-expo) both;
+}
+
+/* 棱彩：卡面上闪烁的电弧 */
+.hx-fx--lightning {
+  inset: 0;
+  background-size: 140% auto;
+  background-image: url('/game/fx/lightning.png');
+  animation: hx-lightning 2.6s steps(1) infinite;
+}
+
+/* 选中：光环扩散 */
+.hx-fx--pulse {
+  left: -40%;
+  right: -40%;
+  top: 50%;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  background-image: url('/game/fx/pulse.png');
+}
+
+.hx-card.is-picked .hx-fx--pulse {
+  animation: hx-pulse 900ms ease-out both;
+}
+
+.hx-card.is-picked .hx-fx--flare {
+  animation: hx-flare 800ms ease-out both;
+  animation-delay: 0ms;
+}
+
+/* 选中：边角星芒 */
+.hx-fx--spark {
+  width: 46%;
+  aspect-ratio: 1;
+  background-image: url('/game/fx/spark.png');
+}
+
+.hx-fx--spark-a {
+  top: -14%;
+  left: -18%;
+}
+
+.hx-fx--spark-b {
+  bottom: -14%;
+  right: -18%;
+}
+
+.hx-card.is-picked .hx-fx--spark {
+  animation: hx-spark 1.6s ease-in-out infinite;
+}
+
+.hx-card.is-picked .hx-fx--spark-b {
+  animation-delay: 0.8s;
+}
+
+/* 未选中：在暗化后沿溶解贴图向上消散 */
+.hx-card.is-dimmed {
+  -webkit-mask-image: url('/game/fx/dissolve.png'), linear-gradient(to bottom, #000 45%, transparent 55%);
+  mask-image: url('/game/fx/dissolve.png'), linear-gradient(to bottom, #000 45%, transparent 55%);
+  mask-size: 100% 100%, 100% 300%;
+  mask-repeat: no-repeat;
+  mask-composite: add;
+  animation: hx-dissolve 900ms ease-in 250ms both;
+}
+
+/* 刷新：新卡自下而上擦出 */
+.hx-card.is-rerolled {
+  /* 只保留起始帧：动画结束后遮罩移除，卡面完整显示 */
+  animation: hx-refresh 620ms var(--ease-out-expo) backwards;
+}
+
+.hx-card.is-rerolled .hx-fx--flare {
+  animation-delay: 0ms;
+}
+
+@keyframes hx-flare {
+  0% {
+    opacity: 0;
+    scale: 0.3;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    scale: 1.3;
+  }
+}
+
+@keyframes hx-sweep {
+  0% {
+    opacity: 0;
+    translate: -100% -40%;
+  }
+  25% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    translate: 60% 30%;
+  }
+}
+
+@keyframes hx-lightning {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.55;
+    background-position: 20% 30%;
+  }
+  12% {
+    opacity: 0;
+  }
+  46% {
+    opacity: 0.45;
+    background-position: 70% 80%;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes hx-pulse {
+  0% {
+    opacity: 0.9;
+    scale: 0.4;
+  }
+  100% {
+    opacity: 0;
+    scale: 1.9;
+  }
+}
+
+@keyframes hx-spark {
+  0%,
+  100% {
+    opacity: 0;
+    scale: 0.4;
+    rotate: 0deg;
+  }
+  50% {
+    opacity: 1;
+    scale: 1;
+    rotate: 45deg;
+  }
+}
+
+@keyframes hx-dissolve {
+  from {
+    mask-position: 0 0, 0 0;
+  }
+  to {
+    mask-position: 0 0, 0 100%;
+    opacity: 0;
+    transform: translateY(-14px) scale(0.95);
+  }
+}
+
+@keyframes hx-refresh {
+  from {
+    -webkit-mask-image: url('/game/fx/refresh_mask.png');
+    mask-image: url('/game/fx/refresh_mask.png');
+    mask-size: 100% 200%;
+    mask-repeat: no-repeat;
+    mask-position: 0 0;
+  }
+  to {
+    -webkit-mask-image: url('/game/fx/refresh_mask.png');
+    mask-image: url('/game/fx/refresh_mask.png');
+    mask-size: 100% 200%;
+    mask-repeat: no-repeat;
+    mask-position: 0 100%;
+  }
+}

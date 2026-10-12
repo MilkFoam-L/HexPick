@@ -1,0 +1,105 @@
+{
+  "id": "workday",
+  "name": "打工人海克斯",
+  "icon": "💼",
+  "description": "完整还原海克斯大乱斗：一局 4 次选择，每次三选一，可刷新，可能遇到金色刷新。图标用 lol:名称 引用游戏原版强化图标。",
+  "layout": "augment",
+  "rules": {
+    "screens": 4,
+    "drawCount": 3,
+    "rerollsPerCard": 1,
+    "goldenRerollChance": 0.2
+  },
+  "items": [
+    {
+      "title": "摸鱼大师",
+      "icon": "lol:fishbait",
+      "rarity": "silver",
+      "description": "每摸鱼 10 分钟，获得 <heal>5% 精神回复</heal>。"
+    },
+    {
+      "title": "咖啡因",
+      "icon": "lol:juiced",
+      "rarity": "silver",
+      "description": "获得 <ad>60% 额外打字速度</ad>，持续 2 小时。"
+    },
+    {
+      "title": "降噪耳机",
+      "icon": "lol:dontchangethechannel",
+      "rarity": "silver",
+      "description": "免疫 <keyword>闲聊</keyword> 与 <keyword>工位八卦</keyword>。"
+    },
+    {
+      "title": "准时下班",
+      "icon": "lol:speeddemon",
+      "rarity": "silver",
+      "description": "18:00 时获得 <ad>+200% 移动速度</ad>。"
+    },
+    {
+      "title": "午睡",
+      "icon": "lol:natureishealing",
+      "rarity": "silver",
+      "description": "午休后 <shield>护盾值等于 30% 最大精力</shield>。"
+    },
+    {
+      "title": "外卖红包",
+      "icon": "lol:donation",
+      "rarity": "silver",
+      "description": "下一顿午饭 <gold>-15 元</gold>。"
+    },
+    {
+      "title": "需求冻结",
+      "icon": "lol:adamant",
+      "rarity": "gold",
+      "description": "本周产品经理的 <keyword>改需求</keyword> 技能进入冷却。"
+    },
+    {
+      "title": "一次过",
+      "icon": "lol:skipthebasic",
+      "rarity": "gold",
+      "description": "下一次代码评审 <gold>零评论通过</gold>。"
+    },
+    {
+      "title": "会议取消",
+      "icon": "lol:escapeplan",
+      "rarity": "gold",
+      "description": "移除今天所有 <keyword>同步会</keyword>，返还 <gold>2 小时</gold>。"
+    },
+    {
+      "title": "线上零告警",
+      "icon": "lol:swiftandsafe",
+      "rarity": "gold",
+      "description": "值班期间 <true>无事发生</true>。"
+    },
+    {
+      "title": "下午茶",
+      "icon": "lol:drink_up",
+      "rarity": "gold",
+      "description": "团队全体 <heal>回复 30% 士气</heal>。"
+    },
+    {
+      "title": "灵光一闪",
+      "icon": "lol:infiniterecursion",
+      "rarity": "gold",
+      "description": "卡了一天的 bug，<ap>洗澡时想通了</ap>。"
+    },
+    {
+      "title": "带薪年假",
+      "icon": "lol:snowday",
+      "rarity": "prismatic",
+      "description": "立即传送到 <gold>海边</gold>，持续 <gold>5 天</gold>。<br>期间 <keyword>免疫消息</keyword>。"
+    },
+    {
+      "title": "年终奖翻倍",
+      "icon": "lol:highroller",
+      "rarity": "prismatic",
+      "description": "获得 <gold>2 倍</gold> 年终奖。<br>(<true>不可叠加</true>)"
+    },
+    {
+      "title": "四天工作制",
+      "icon": "lol:zerohour",
+      "rarity": "prismatic",
+      "description": "永久移除一个 <keyword>工作日</keyword>。"
+    }
+  ]
+}

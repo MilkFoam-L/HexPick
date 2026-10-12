@@ -1,0 +1,23 @@
+{
+  "id": "roll-call",
+  "name": "今天谁分享",
+  "icon": "🎤",
+  "description": "开会/课堂点名。抽到的人移出池子，直到点“重置已选”。把名字换成你们团队的就能用。",
+  "layout": "portrait",
+  "rules": {
+    "screens": 1,
+    "drawCount": 3,
+    "rerollsPerCard": 1,
+    "removeAfterPick": true
+  },
+  "items": [
+    { "title": "张三", "description": "前端 · 上次分享了 <keyword>性能优化</keyword>" },
+    { "title": "李四", "description": "后端 · 擅长 <gold>数据库调优</gold>" },
+    "王五",
+    "赵六",
+    "孙七",
+    "周八",
+    "吴九",
+    "郑十"
+  ]
+}

@@ -1,0 +1,62 @@
+/* 界面配色取自游戏 UI（金色描边、深海蓝）；卡片外观全部来自原版贴图。插件 theme 可覆盖这些变量。 */
+:root {
+  --hx-ink: #f0e6d2;
+  --hx-text: #cdd6e0;
+  --hx-muted: #8593a3;
+  --hx-gold: #c8aa6e;
+  --hx-gold-deep: #785a28;
+  --hx-accent: #0ac8b9;
+  /* 叠在背景图上的暗化层，模拟游戏选强化时战场变暗 */
+  --hx-dim: radial-gradient(ellipse 80% 70% at 50% 50%, rgb(1 10 19 / 0.25), rgb(1 10 19 / 0.75) 85%);
+
+  --hx-font-display: 'Optima', 'Songti SC', 'STSong', serif;
+  --hx-font-body: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+
+  --glow-silver: #c9d4df;
+  --glow-gold: #f2c45a;
+  --glow-prismatic: #c69bff;
+
+  /* 原版卡片宽高比 312:512 */
+  --card-w: clamp(190px, 15.5vw, 330px);
+  --card-h: calc(var(--card-w) * 1.641);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+kbd {
+  font-family: ui-monospace, 'SF Mono', monospace;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

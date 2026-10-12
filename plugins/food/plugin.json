@@ -1,0 +1,134 @@
+{
+  "id": "food",
+  "name": "今天吃什么",
+  "icon": "🍜",
+  "description": "最爱吃的设成棱彩，只在棱彩轮出现。",
+  "layout": "augment",
+  "rules": {
+    "screens": 1,
+    "drawCount": 3,
+    "rerollsPerCard": 1,
+    "rarityWeights": {
+      "silver": 50,
+      "gold": 40,
+      "prismatic": 10
+    }
+  },
+  "items": [
+    {
+      "id": "hotpot",
+      "title": "火锅",
+      "icon": "🍲",
+      "rarity": "prismatic",
+      "description": "获得 <gold>100% 幸福感</gold>，持续一整晚。<br>附带 <keyword>毛肚</keyword> 与 <keyword>鸭血</keyword>。",
+      "tags": [
+        "辣",
+        "多人"
+      ]
+    },
+    {
+      "id": "bbq",
+      "title": "烤肉",
+      "icon": "🥩",
+      "rarity": "prismatic",
+      "description": "每翻一面，回复 <heal>20 点心情</heal>。<br>(<ad>+50% 饱腹</ad>)"
+    },
+    {
+      "id": "seafood-buffet",
+      "title": "海鲜自助",
+      "icon": "🦀",
+      "rarity": "prismatic",
+      "description": "扶墙进，扶墙出。<br>获得 <gold>无限续盘</gold>。"
+    },
+    {
+      "id": "sushi",
+      "title": "寿司",
+      "icon": "🍣",
+      "rarity": "gold",
+      "description": "精致一餐：<gold>品味 +30</gold>，钱包 <true>-30%</true>。"
+    },
+    {
+      "id": "ramen",
+      "title": "日式拉面",
+      "icon": "🍜",
+      "rarity": "gold",
+      "description": "浓汤豚骨，获得持续 3 小时的 <shield>暖胃护盾</shield>。"
+    },
+    {
+      "id": "crayfish",
+      "title": "小龙虾",
+      "icon": "🦞",
+      "rarity": "gold",
+      "description": "剥壳期间 <keyword>双手被定身</keyword>，但快乐值 <gold>翻倍</gold>。",
+      "tags": [
+        "夏天"
+      ]
+    },
+    {
+      "id": "pizza",
+      "title": "披萨",
+      "icon": "🍕",
+      "rarity": "gold",
+      "description": "芝士拉丝造成 <ap>+40% 满足感</ap>。"
+    },
+    {
+      "id": "malatang",
+      "title": "麻辣烫",
+      "icon": "🌶️",
+      "rarity": "silver",
+      "description": "自选食材，每多选一样 <gold>+1 自由度</gold>。"
+    },
+    {
+      "id": "shaxian",
+      "title": "沙县小吃",
+      "icon": "🥟",
+      "rarity": "silver",
+      "description": "稳定发挥。蒸饺 + 拌面，<heal>回复 50% 体力</heal>。"
+    },
+    {
+      "id": "noodles",
+      "title": "兰州拉面",
+      "icon": "🍝",
+      "rarity": "silver",
+      "description": "一清二白三红四绿五黄，<keyword>出餐极快</keyword>。"
+    },
+    {
+      "id": "rice-bowl",
+      "title": "盖浇饭",
+      "icon": "🍛",
+      "rarity": "silver",
+      "description": "朴实无华，<shield>稳稳的幸福</shield>。"
+    },
+    {
+      "id": "dumplings",
+      "title": "饺子",
+      "icon": "🥟",
+      "rarity": "silver",
+      "description": "皮薄馅大，<gold>+20 家的味道</gold>。"
+    },
+    {
+      "id": "burger",
+      "title": "汉堡薯条",
+      "icon": "🍔",
+      "rarity": "silver",
+      "description": "快速补给，<ad>+30% 移动速度</ad>（吃完马上回工位）。"
+    },
+    {
+      "id": "salad",
+      "title": "轻食沙拉",
+      "icon": "🥗",
+      "rarity": "silver",
+      "description": "减脂期专用，<heal>罪恶感 -100%</heal>。",
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "id": "jianbing",
+      "title": "煎饼果子",
+      "icon": "🌯",
+      "rarity": "silver",
+      "description": "加蛋加肠，<gold>性价比之王</gold>。"
+    }
+  ]
+}

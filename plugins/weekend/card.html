@@ -1,0 +1,15 @@
+<div class="ticket">
+  <header class="ticket__head">
+    <span class="ticket__no">No.{{index}}</span>
+    <span class="ticket__tier">{{rarityLabel}}</span>
+  </header>
+  {{#icon}}<div class="ticket__icon">{{icon}}</div>{{/icon}}
+  <h2 class="ticket__title">{{title}}</h2>
+  <p class="ticket__desc">{{{description}}}</p>
+  <dl class="ticket__meta">
+    {{#data.where}}<div><dt>地点</dt><dd>{{data.where}}</dd></div>{{/data.where}}
+    {{#data.time}}<div><dt>时长</dt><dd>{{data.time}}</dd></div>{{/data.time}}
+    <div><dt>预算</dt><dd>{{#data.budget}}¥{{data.budget}}{{/data.budget}}{{^data.budget}}免费{{/data.budget}}</dd></div>
+  </dl>
+  <img class="ticket__stamp" src="assets/stamp.svg" alt="" />
+</div>
